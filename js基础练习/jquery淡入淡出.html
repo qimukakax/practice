@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        list-style: none;
+        width: 30px;
+        height: 10px;
+        background: rgba(0,0,0,0.8);
+        float: left;
+        margin: 0 5px;
+        text-align: center;
+        color:#fff;
+        cursor: pointer;
+    }
+    .active{
+        background: rgba(0,0,0,0.4);
+    }
+    ul{
+        position: absolute;
+        bottom: 22px;
+        right: 270px;   
+    }
+    #box{
+        width: 750px;
+        height: 291px;
+        margin: 100px auto 0;
+    }
+    #wrapper{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    img{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-transition: opacity 2s ease;
+        transition: opacity 2s ease;
+        opacity: 0;
+    }
+    .special{
+        opacity: 1;
+    }
+</style>    
+</head>
+<body>
+    <div id="box">
+        <div id="wrapper">
+                <img class="special" src="../img/1.jpg" alt="">
+                <img src="../img/2.jpg" alt="">
+                <img src="../img/3.jpg" alt="">
+                <img src="../img/4.jpg" alt="">
+                <img src="../img/5.jpg" alt="">
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <script src="./jquery-1.11.3.js"></script>
+    <script>
+        var $Li = $('#wrapper li');
+        var $Ig = $('#wrapper img');
+        var temp = 0;
+        function Next(_index){
+            $Li.eq(_index).addClass('active').siblings().removeClass('active');
+            $Ig.eq(_index).addClass('special').siblings().removeClass('special');
+        }
+        $Li.on('click',function(){
+            _index = $(this).index();
+            temp = _index;
+            Next(_index);
+        })
+        var temp=0;
+        var Tgo = function(){
+            Timer = setInterval(function(){
+                temp++;
+                if (temp == 5){
+                    temp = 0;
+                }
+                Next(temp);
+            },1000)
+        }
+        Tgo();
+        $('#wrapper').on('mouseover',function(){
+            clearInterval(Timer);
+        })
+        $('#wrapper').on('mouseout',function(){
+            Tgo();
+        })
+    </script>
+</body>
+</html>

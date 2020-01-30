@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>右键菜单</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    li{
+        list-style: none;
+        width: 60px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        border: 1px solid #666666;
+        background: #999999;
+        color: gold;
+    }
+    li:hover{
+        background: #666666;
+    }
+    </style>
+</head>
+<body>
+    <div id='main'>
+        <ul>
+            <li>打开</li>
+            <li>下载</li>
+            <li>删除</li>
+            <li>暂停</li>
+            <li>七七</li>
+            <li>分享</li>
+        </ul>
+    </div>
+    <script>
+    var wMain=document.getElementById('main');
+    var wLi=wMain.getElementsByTagName('li');
+    document.oncontextmenu = function(event){
+      wMain.style.display="block";
+      wMain.style.left=event.clientX + 'px';
+      wMain.style.top=event.clientY +'px';
+     for(var i=0;i<wLi.length;i++){
+         wLi[i].index=i;
+         wLi[i].onclick = function(){
+             console.log(wLi[this.index].innerHTML)
+         }
+     }    
+          document.onclick=function(){
+          wMain.style.display='none';
+      }
+
+      return false;
+    }
+    
+      
+    
+    </script>
+</body>
+</html>

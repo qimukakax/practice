@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: #ff0012;
+            cursor: move;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var aDiv=document.getElementsByTagName('div')[0];
+        var x,y;
+        aDiv.onmousedown=function(){
+            x=event.clientX - aDiv.offsetLeft;
+            y=event.clientY - aDiv.offsetTop;
+            document.onmousemove=function(){
+                aDiv.style.left=event.clientX - x + 'px';
+                aDiv.style.top=event.clientY -y + 'px';
+            }
+        }
+        aDiv.onmouseup=function(){
+            document.onmousemove='null';
+        }
+    </script>
+</body>
+</html>
+//先按下 再移动 mousedown mousemove 
+//client 减去左段距离x 减去上段距离y
+//mouseup 拿走不动 null

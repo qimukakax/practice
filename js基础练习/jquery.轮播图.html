@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: rgba(0,0,0,0.6);
+        float: left;
+        margin: 0 5px;
+        text-align: center;
+        color:#fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .active{
+        background: #ff0036;
+    }
+    ul{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        
+    }
+    #box{
+        width: 750px;
+        height: 291px;
+        margin: 100px auto 0;
+    }
+    #wrapper{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    img{
+        display: none;
+        width: 100%;
+    }
+    .special{
+        display: block;
+    }
+    #left{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: rgba(0,0,0,0.7);
+        position: absolute;
+        left: 10px;
+        top: 130px;
+        cursor: pointer;
+    }
+    #left::after{
+        display: block;
+        content: '';
+        width: 22px;
+        height: 22px;
+        border-left: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        margin-left:16px;
+        margin-top: 12px;
+    }
+    #right{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: rgba(0,0,0,0.7);
+        position: absolute;
+        right: 10px;
+        top: 130px;
+        cursor: pointer;
+    }
+    #right::after{
+        display: block;
+        content: '';
+        width: 22px;
+        height: 22px;
+        border-left: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        margin-left:9px;
+        margin-top: 12px;
+    }
+</style>    
+</head>
+<body>
+    <div id="box">
+        <div id="wrapper">
+                <img class="special" src="../img/1.jpg" alt="">
+                <img src="../img/2.jpg" alt="">
+                <img src="../img/3.jpg" alt="">
+                <img src="../img/4.jpg" alt="">
+                <img src="../img/5.jpg" alt="">
+        
+            <ul>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+            <span id="left"></span>
+            <span id="right"></span>
+     </div>
+    </div>
+    <script src="./jquery-1.11.3.js"></script>
+    <script>
+        var temp = 0;
+        var $Li = $('#wrapper li');
+        var $Ig = $('#wrapper img');
+        var Timer;
+        function Next(_index){    
+            $Li.eq(_index).addClass('active').siblings().removeClass('active');
+            $Ig.eq(_index).addClass('special').siblings().removeClass('special');
+        }
+        $Li.on('click',function(){
+           _index = $(this).index();
+            temp = _index;
+            Next(_index);
+        })
+        $('#right').on('click',function(){
+            temp++;
+            if (temp == $Li.length){
+                temp = 0 ;
+            }
+            Next(temp);
+        })
+        $('#left').on('click',function(){
+            temp--;
+            if (temp == -1){
+                temp = $Li.length - 1;
+            }
+            Next(temp);
+        })
+        var Tgo = function(){
+            Timer = setInterval(function(){
+                $('#right').trigger('click');
+            },1000);
+            
+        }
+        Tgo();
+        $('#wrapper').on('mouseover',function(){
+            clearInterval(Timer);
+        })
+        $('#wrapper').on('mouseout',function(){
+            Tgo();
+        })
+    </script>
+</body>
+</html>

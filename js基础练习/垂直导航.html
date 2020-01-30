@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            width: 99px;
+            height: 20px;
+            background: #ffffff;
+            color: #000000;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        #box{
+            width: 100px;
+            height: 160px;
+        }
+        #first{
+            width: 100px;
+            background: #ff0036;
+            color: #ffffff;
+        }
+        #second{
+            width: 100px;
+            background: #ff0036;
+            color: #ffffff;
+        }
+        #first>ul{
+            width: 99px;
+            height: 60px;
+            border-right: 1px solid #999999;
+            display: none;
+        }
+        #second>ul{
+            width: 99px;
+            height: 60px;
+            border-right: 1px solid #999999;
+            border-bottom: 1px solid #999999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="first">第一阶段
+            <ul id="inner">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JS</li>
+            </ul>
+        </div>
+        <div id="second">第二阶段
+            <ul id="in">
+                <li>ES6</li>
+                <li>VUE</li>
+                <li>React</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var aFt=document.getElementById('first');
+        var aSd=document.getElementById('second');
+        var aIr=document.getElementById('inner');
+        var aIn=document.getElementById('in');
+        aFt.onclick = function(){
+            if(!aIr.style.display || aIr.style.display == 'none')
+            aIr.style.display='block';
+            else{
+                aIr.style.display='none';
+            }
+        }
+        aSd.onclick = function(){
+            if(!aIn.style.display || aIn.style.display == 'none')
+            aIn.style.display='block';
+            else{
+                aIn.style.display='none';
+            }
+        }
+    </script>
+</body>
+</html>

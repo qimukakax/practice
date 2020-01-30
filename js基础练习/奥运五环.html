@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            position: relative;
+        }
+        #box>div{
+            width: 250px;
+            height: 250px;
+            border: 10px solid black;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #box>div:nth-child(1){
+            border-color: blue;
+            top: 0;
+            left: 0;
+        }
+        #box>div:nth-child(1)::after{
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 10px solid blue;
+            border-radius: 50%;
+            position: absolute;
+            top:-10px;
+            left: -10px;
+            z-index: 1;
+            border-bottom-color: transparent;
+        }
+        #box>div:nth-child(2){
+            border-color: black;
+            top: 0;
+            left: 280px;
+        }
+        #box>div:nth-child(2)::after{
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 10px solid black;
+            border-radius: 50%;
+            position: absolute;
+            top:-10px;
+            left: -10px;
+            z-index: 1;
+            border-left-color: transparent;
+        }
+        #box>div:nth-child(3){
+            border-color: red;
+            top:0;
+            left: 560px;
+        }
+        #box>div:nth-child(3)::after{
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 10px solid red;
+            border-radius: 50%;
+            position: absolute;
+            top:-10px;
+            left: -10px;
+            z-index: 1;
+            border-left-color: transparent;
+        }
+        #box>div:nth-child(4){
+            border-color: yellow;
+            top:135px;
+            left: 135px; 
+        }
+        #box>div:nth-child(4)::after{
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 10px solid yellow;
+            border-radius: 50%;
+            position: absolute;
+            top:-10px;
+            left: -10px;
+            z-index: 1;
+            border-right-color: transparent;
+            border-top-color: transparent;
+        }
+        #box>div:nth-child(5){
+            border-color: green;
+            top: 135px;
+            left: 415px;
+        }
+        #box>div:nth-child(5)::after{
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 10px solid green;
+            border-radius: 50%;
+            position: absolute;
+            top:-10px;
+            left: -10px;
+            z-index: 1;
+            border-top-color: transparent;
+            border-right-color: transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

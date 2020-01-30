@@ -1,0 +1,15 @@
+/* 头部图片 */
+#top{
+    background: #fab0cd;
+}
+#top a{
+    display: block;
+}
+#top img{
+    display: block;
+    margin: 0 auto;
+}
+*{
+    margin: 0;
+    padding: 0;
+}

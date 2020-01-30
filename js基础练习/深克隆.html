@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var aT ='sas'
+        var aA = [1,2,3]
+        var aO = { 
+            name :'qimukakax',
+            score : {
+                math : 100,
+                c: 100
+            }
+        }
+        function deepClone(obj) {
+           var temp =(Array.isArray(obj)) ? [] : {};
+            if( obj && typeof obj === 'object'){ 
+            for (key in obj){
+                if ( obj[key] && typeof(obj[key]) === 'object'){
+                    // temp=(obj[key].constructor === Array)?[]:{}
+                    temp[key] = deepClone(obj[key]);
+                }else {
+                    temp[key] = obj[key]
+                }
+            }
+        }else{
+            temp = obj;
+        }
+            return temp;
+        }
+        aO.adc=[];
+        var p = deepClone(aO);
+        console.log(p);
+        aO.score.c=50
+        console.log(aO);
+        console.log(p)
+        var y = deepClone(aA);
+        console.log(y)
+        aA = [4,5,6]
+        console.log(aA);
+        console.log(y);
+        var g = deepClone(aT);
+        console.log(g);
+        aT = 'sdad';
+        console.log(g);
+        console.log(aT);
+
+    </script>
+</body>
+</html>

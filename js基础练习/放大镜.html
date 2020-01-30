@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #small{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            float: left;
+        }
+        #small>img{
+            width: 100%;
+            height: 100%;
+        }
+        #white{
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #big{
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            float: left;
+            position: relative;
+            display: none;
+        }
+        #big>img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="small">
+        <img src="../img/demo.jpg" alt="">
+        <div id="white"></div>   
+    </div>
+    <div id="big">
+        <img src="../img/demo.jpg" alt="">
+    </div>
+    <script>
+        var aSm=document.getElementById('small');
+        var aWt=document.getElementById('white');
+        var aBg=document.getElementById('big');
+        var aIg=aBg.getElementsByTagName('img')[0];
+        aSm.onmouseover = function(){
+            aWt.style.display='block';
+            aBg.style.display='block';
+            aSm.onmousemove = function(event){
+                aWt.style.left=event.clientX - aWt.offsetWidth/2 +'px';
+                aWt.style.top=event.clientY - aWt.offsetHeight/2 +'px';
+                var sMax=aSm.offsetWidth - aWt.offsetWidth;
+                var sMay=aSm.offsetHeight - aWt.offsetHeight;
+                var bMax=aIg.offsetWidth - aBg.offsetWidth;
+                var bMay=aIg.offsetHeight - aBg.offsetHeight;
+                if(aWt.offsetLeft<=0){
+                    aWt.style.left=0;
+                }
+                if(aWt.offsetTop<=0){
+                    aWt.style.top=0;
+                }
+                if(aWt.offsetLeft>=sMax){
+                    aWt.style.left=sMax + 'px';
+                }
+                if(aWt.offsetTop>=sMay){
+                    aWt.style.top=sMay + 'px';
+                }
+                var xPt=aWt.offsetLeft/sMax;
+                var yPt=aWt.offsetTop/sMay;
+                aIg.style.left = - bMax*xPt + 'px';
+                aIg.style.top = - bMay*yPt + 'px'; 
+                
+                
+            }
+        }
+        aSm.onmouseout = function(){
+            aWt.style.display='none';
+            aBg.style.display='none';
+        }
+    </script>
+</body>
+</html>
+//设置mouseover出现 （out消失） 移动 拖拽 赋值后判断 不能出框 小于等于0 大于等于 大的宽减小的宽
+移入移出两个方法
+找可移动的最大距离   大宽减小宽
+得出比例

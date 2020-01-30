@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wx的选项卡</title>
+</head>
+<style>
+
+li{
+    list-style: none;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+#main{
+    width: 300px;
+    height: 1000px;
+    margin: 100px auto 0;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+}
+.clearfix{
+    padding: 0;
+}
+li{
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    float: left;
+}
+.special{
+    background: #ff0089;
+    color: #ffffff;
+}
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#last>div{
+    display: none;
+    width: 300px;
+    height: 300px;
+    background: #ff0036;
+    color: #ffffff;
+}
+#last>.active{
+    display:block;
+}
+</style>
+<body>
+    
+</body>
+    <div id="main">
+        <div id="wrapper">
+             <ul class="clearfix">
+                 <li class="special">菜单1</li>
+                 <li>菜单2</li>
+                 <li>菜单3</li>
+            </ul>
+        <div id="last">
+            <div class="active">内容1</div>
+            <div>内容2</div>
+            <div>内容3</div>
+        </div>
+        </div>
+    </div>
+    <script>  
+        var aDiv=document.getElementById('wrapper');
+        var aLi=aDiv.getElementsByTagName('li');
+        var bDiv=document.getElementById('last');
+        var cDiv=bDiv.getElementsByTagName('div');
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                aLi[i].onclick= function(){   
+                    for(var j=0;j<aLi.length;j++){
+                        aLi[j].className='';
+                        cDiv[j].className='';
+                    } 
+                    aLi[this.index].className='special';
+                    cDiv[this.index].className='active';
+                }
+            }  
+    </script>
+</html>

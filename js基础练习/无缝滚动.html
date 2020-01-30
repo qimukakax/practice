@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #main{
+            width: 500px;
+            height: 200px;
+            border: 2px solid #ff0045;
+            margin: 100px auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+        #wrapper{
+            width:560px;
+            height: 120px;
+            position: absolute;
+            top: 0 ;
+            left: 0 ;
+        }
+        #wrapper>li{
+            width: 120px;
+            height: 120px;
+            margin: 0 10px;
+            background: #865145;
+            float: left;
+            text-align: center;
+            line-height: 120px;
+        }
+        span{
+            display: inline-block;
+            width: 60px;
+            height: 38px;
+            background: pink;
+            text-align: center;
+            line-height: 38px;
+            cursor: pointer;
+        }
+        #box{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <ul id="wrapper">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="box">
+            <span id="left">左</span>
+            <span id="right">右</span>
+        </div>
+    </div>
+    <script>
+        var aUl=document.getElementById('wrapper');
+        var aLt=document.getElementById('left');
+        var aRt=document.getElementById('right');
+        aUl.innerHTML += aUl.innerHTML;
+        aUl.style.width=aUl.offsetWidth * 2 +'px';
+        var temp = -10;
+        setInterval(function(){
+            aUl.style.left=aUl.offsetLeft + temp +'px';
+            if(aUl.offsetLeft <= -aUl.offsetWidth/2){
+                aUl.style.left=0;
+            }
+            if(aUl.offsetLeft > 0){
+                aUl.style.left = -aUl.offsetWidth/2 + 'px';
+            }
+        },100)
+        aLt.onclick=function(){
+            temp = -10;
+        }
+        aRt.onclick=function(){
+            temp = 10;
+        }
+        
+    </script>
+</body>
+</html>
+
+//复制innerhtml  加宽度 offsetwidth 定时器 改offsetleft 长度一半回去 获取两个按钮 设置值 向左加 向右减 小于等于一半 大于0 
