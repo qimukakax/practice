@@ -11,7 +11,18 @@
     <link rel="stylesheet" href="./css/search.css">
     <link rel="stylesheet" href="./css/class.css">
 </head>
-<body>
+<style>
+    #scroll_top{
+        width: 20px;
+        height: 20px;
+        background: #000;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        display: none;
+    }
+</style>
+<body style="height: 2000px;">
     <!-- 顶部导航 -->
     <div class="lead">
         <div class="lead-wrapper">
@@ -430,6 +441,7 @@
             </ul>
         </div>
     </div>
+    <div id="scroll_top"></div>
     <!--js-->
     <script>
         var lDw=document.getElementById('lost-draw');
@@ -469,7 +481,33 @@
         aWr.onmouseout = function(){
             tGo();
         }
-    
+        var sT = document.getElementById('scroll_top');
+        var clientHeight = document.documentElement.clientHeight;
+        window.onscroll = function (){
+            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var Ttimer = null;
+            var isTop = true;
+            if(osTop >= clientHeight){
+                sT.style.display = 'block';
+            }else{
+                sT.style.display = 'none';
+            }
+            if(!isTop){
+                clearInterval(Ttimer);
+            }
+            isTop = false;
+        }
+        sT.onclick = function(){
+            Ttimer = setInterval(function(){
+                var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var speed = Math.floor(-osTop/6);
+                document.documentElement.scrollTop = document.body.scrollTop = speed + osTop;
+                isTop = true;
+                if(osTop == 0){
+                    clearInterval(Ttimer);
+                }
+            },30)
+        }
     </script>
 </body>
 </html> 

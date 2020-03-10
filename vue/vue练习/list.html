@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .active{
+        background: #ff0036;
+    }
+</style>
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model="value" @keyup="filter">
+            <button @click="add">添加</button>
+        </div>
+        <ul>
+            <li v-for="(item,index) in list1" @click="select(item)" :class="{active:item.isA}">{{item.content}}
+                <button @click.stop="del(index)">删除</button>
+            </li>
+            
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                list: [],
+                list1: [],
+                value: '',
+                isA: false
+            },
+            methods: {
+                add(){
+                    this.list.push({
+                        content : this.value,
+                        isA : false
+                    })
+                    this.value = ''
+                    this.list1 = [...this.list]
+                },
+                del(_index){
+                    this.list.splice(_index,1)
+                    this.list1 = [...this.list]
+                },
+                select(aa){
+                    console.log(this.list)
+                    aa.isA = !aa.isA
+                },
+                filter(){
+                    console.log(this.value)
+                    this.list1 = this.list.filter((item , key)=>{
+                        return item.content.includes(this.value)
+                    })
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
