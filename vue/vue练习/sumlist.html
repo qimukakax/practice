@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .content{
+        width: 500px;
+        margin: 100px auto;
+    }
+    .list{
+        background: #ff8907;
+        height: 50px;
+        line-height: 50px;
+        overflow: hidden;
+        margin: 5px 0;
+    }
+    .active{
+        background: #ff0036;
+        height: 50px;
+        line-height: 50px;
+        overflow: hidden;
+        margin: 5px 0;
+    }
+    .left{
+        float: left;
+        margin-left: 20px;
+    }
+    .right{
+        float: right;
+        margin-right: 20px;
+    }
+    ul{
+        border-bottom: 1px solid #333333;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="content">
+            <h4>商品列表</h4>
+            <ul>
+                <li v-for="(item,key) in list" :class="[item.isA ? active : '', list1 ]" @click="change(item)">
+                    <p class="left">{{item.name}}</p>
+                    <p class="right">{{item.cost}}</p>
+                </li>
+            </ul>
+            <p>total:{{sum}}</p>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                list:[
+                    {
+                        name: "香水",
+                        isA: false,
+                        cost: 666
+                    },
+                    {
+                        name: "口红",
+                        isA: false,
+                        cost: 111
+                    },
+                    {
+                        name: "衣服",
+                        isA: false,
+                        cost: 222
+                    },{
+                        name: "鞋",
+                        isA: false,
+                        cost: 333
+                    }
+                ],
+                sum: 0,
+                active: "active",
+                list1: "list"
+            },
+            methods: {
+                change(_item){
+                    _item.isA = !_item.isA
+                    if(_item.isA){
+                        console.log(1)
+                        this.sum += _item.cost
+                    }else{
+                        this.sum -= _item.cost
+                        console.log(2)
+                    }
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+</html>

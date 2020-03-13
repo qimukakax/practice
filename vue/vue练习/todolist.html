@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .content{
+        width: 650px;
+        margin: 100px auto;
+    }
+    .header{
+        border-bottom: 1px solid #333333;
+    }
+    .left{
+        float: left;
+    }
+    .right{
+        float: right;
+    }
+    li{
+        overflow: hidden;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 6px;
+        border: 1px solid #333333;
+    }
+    .active{
+        background: #ff00ff;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="content">
+            <h3 class="header">Todo list</h3>
+            名称:<input type="text" v-model="value1">
+            价格:<input type="text" v-model="value2">
+            <button @click="add">添加</button>
+            <input type="text" v-model="value3">
+            <button @click="search">搜索</button>
+            <ul>
+                <li v-for="(item,index) in list2" :class="{active : item.isA}" @click="change(item)">
+                    <div class="left">
+                        <input type="checkbox" v-model="item.isA">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="right">
+                        <span>{{item.cost}}</span>
+                        <button @click.stop="del(item,index)">X</button>
+                    </div>
+                </li>
+            </ul>
+            <button @click="zong">删除选中</button>
+            总价:{{sum}}
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                sum: 0,
+                value1: '',
+                value2: '',
+                value3: '',
+                list1: [
+                    {
+                        name:'香蕉',
+                        cost:5,
+                        isA:false
+                    },
+                    {
+                        name:'苹果',
+                        cost:6,
+                        isA:false
+                    },
+                    {
+                        name:'榴莲',
+                        cost:10,
+                        isA:false
+                    },
+                    {
+                        name:'西瓜',
+                        cost:7,
+                        isA:false
+                    }
+                ],
+                list2: [
+                    {
+                        name:'香蕉',
+                        cost:5,
+                        isA:false
+                    },
+                    {
+                        name:'苹果',
+                        cost:6,
+                        isA:false
+                    },
+                    {
+                        name:'榴莲',
+                        cost:10,
+                        isA:false
+                    },
+                    {
+                        name:'西瓜',
+                        cost:7,
+                        isA:false
+                    }
+                ],
+
+            },
+            methods: {
+                change(item){
+                    item.isA = !item.isA
+                    if(item.isA){
+                        this.sum += item.cost
+                    }else{
+                        this.sum -= item.cost
+                    }
+                },
+                add(){
+                    this.list1.push(
+                        {
+                            name: this.value1,
+                            cost: this.value2*1,
+                            isA: false
+                        }
+                    )
+                    this.value1 = ''
+                    this.value2 = ''
+                    this.list2 = [...this.list1]
+                },
+                search(){
+                    this.list2 = this.list1.filter((item,key) => {
+                        return item.name.includes(this.value3)
+                    })
+                    this.value3 = ''
+                },
+                del(_item,_index){
+                    this.list1.splice(_index,1)
+                    this.list2 = [...this.list1]
+                    this.sum -= _item.cost
+                    if(this.sum < 0){
+                        this.sum = 0
+                    }
+                },
+                zong(){
+                    this.list2.forEach((key,value) => {
+                        for(let i=0 ; i<this.list2.length ; i++){
+                            if(this.list2[i].isA){  
+                                this.sum -= this.list2[i].cost
+                                this.list2.splice(i,1)
+                                i--
+                                if(this.sum < 0){
+                                    this.sum = 0
+                                }
+                            }
+                            this.list1 = [...this.list2]
+                        }
+                    });
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>

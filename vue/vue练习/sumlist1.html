@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .list_one{
+        margin: 15px 0;
+    }
+</style>
+<body>
+    <div id="app">
+        <div>
+            是否需要额外付费设施：
+            <input type="checkbox" v-model="isA" @click="del">
+            <ul v-if="isA" class="list_one">
+                <li v-for="(item,index) in list"><label :for="item.id">{{item.name}}({{item.cost}})</label>
+                    <input type="checkbox" v-model="list1" :value="item" :id="item.id">
+                </li>
+            </ul>
+            <p>订单费用信息：</p>
+            <ul>
+                <li v-for="(item,index) in list1">{{item.name}}({{item.cost}})</li>
+            </ul>
+            <p>总金额：{{sum()}}</p>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                list: [
+                    {
+                        name: "沙发",
+                        cost: 100,
+                        id: "list1"
+
+                    },
+                    {
+                        name: "电脑",
+                        cost: 50,
+                        id: "list2"
+                    },
+                    {
+                        name: "无线网",
+                        cost: 200,
+                        id: "list3"
+                    }
+                ],
+                isA: false,
+                list1: [
+                    {
+                        name: "群力花园豪华型",
+                        cost: 400
+                    }
+                ],
+                total: 400
+            },
+            methods: {
+                sum(){
+                    let count = 0;
+                    this.list1.forEach(element => {
+                        count += element.cost
+                    });
+                    return count;
+                },
+                del(){
+                    this.list1.splice(1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
