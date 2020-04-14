@@ -1,0 +1,44 @@
+const menuList = [
+    {
+        title:"欢迎",
+        path:'/home',
+    },
+    {
+      title:"信息",
+      path:'/banner',
+    },
+    {
+      title:"用户管理",
+      path:'/user',
+      children:[
+        {
+          title:"创建用户",
+          path:'/user/add'
+        },
+        {
+          title:"用户列表",
+          path:'/user/list'
+        },
+      ]
+    },
+    {
+      title:"课程分类",
+      path:'/classify',
+      children:[
+        {
+            title:"分类列表",
+            path:'/classify/list'
+        },
+        {
+            title:"path列表",
+            path:'/classify/path'
+        },
+      ]
+    },
+    {
+      title:"教师信息",
+      path:'/teacher',
+    }
+  ]
+  
+  export default menuList;

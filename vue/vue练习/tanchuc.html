@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #container{
+        width: 300px;
+        height: 200px;
+        margin: 50px auto;
+        border: 1px solid #ff66ff;
+    }
+    #title{
+        padding: 0 10px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #dddddd;
+    }
+    #title span{
+        float: right;
+        cursor: pointer;
+    }
+    #content{
+        padding: 0 10px;
+    }
+</style>
+<body>
+    <div id="app">
+        <button @click="login()">{{loginTitle}}</button>
+        <button @click="sign()">{{signTitle}}</button>
+        <myblog :title="loginTitle" v-show="isL" @hide='close' :cloo='close'>
+            <p>
+                用户名: <input type="text">
+            </p>
+            <p>
+                密码: <input type="password">
+            </p>
+        </myblog>
+        <myblog :title='signTitle' v-show="isS" @hide='close' :cloo='close'>
+            <p>
+                用户名: <input type="text">
+            </p>
+            <p>
+                密码: <input type="password">
+            </p>
+            <p>
+                确认密码: <input type="password">
+            </p>
+        </myblog>
+    </div>
+    <template id="common_box">
+        <div id="container">
+            <header id="title">{{title}}
+                <!-- $emit调用父组件的方法，第一个参数是事件名称，之后的参数是方法里需要的参数 -->
+                <span @click="$emit('hide')">X</span>
+            </header>
+            <div id="content">
+                <slot></slot>
+                <button>{{title}}</button>
+            </div>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                loginTitle: '登录',
+                signTitle: '注册',
+                isL: false,
+                isS: false
+            },
+            methods: {
+                login(){
+                    this.isL = !this.isL
+                    this.isS = false
+                },
+                sign(){
+                    this.isS = !this.isS
+                    this.isL = false
+                },
+                close(){
+                    this.isL = false,
+                    this.isS = false
+                }
+            },
+            components: {
+                'myblog' : {
+                    template : '#common_box',
+                    props: ['title','cloo']
+                }
+            }
+        })
+    </script>
+</body>
+</html>
