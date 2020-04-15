@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+    <script src="./build/prop-types.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const age = '18';
+        class TitleType extends React.Component {
+            static propTypes = {
+                title: PropTypes.string.isRequired,
+            }
+            render () {
+                return <h1>{this.props.title}</h1>
+            }
+        }
+        ReactDOM.render(
+            <TitleType title={age} />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

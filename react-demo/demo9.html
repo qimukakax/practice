@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class MyInput extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    value : 'Hello'
+                }
+                this.handChange = this.handChange.bind(this)
+            }
+            handChange(value) {
+                this.setState({
+                    value : value.target.value
+                })
+            }
+            render() {
+                var value = this.state.value
+                return (
+                    <div>
+                        <input type="text" value={value} onChange={this.handChange} />
+                        <p>{value}</p>    
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <MyInput />,
+            document.getElementById('root')
+        ) 
+    </script>
+</body>
+</html>

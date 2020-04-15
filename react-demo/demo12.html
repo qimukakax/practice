@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+    <script src="./build/jquery.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class MyLoading extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    loading: true,
+                    error: null,
+                    data: null
+                } 
+            }
+            componentDidMount() {
+                this.props.promise.then(
+                    value => this.setState({loading: false, data: value}),
+                    error => this.setState({loading: false, error: error}));
+            }
+            render() {
+                console.log(this.state.data)
+                if (this.state.loading) {
+                    return <div>Loading...</div>
+                } else if (this.state.error !== null) {
+                    return <div>Error: {this.state.error.message}</div>
+                } else {
+                    var data = this.state.data.items
+                    var showList = data.map((items, index) => {
+                        return (
+                            <li key={index}><a href={items.html_url}>{items.name}</a> ({items.stargazers_count} stars) <br/> {items.description}</li>
+                        )
+                    })
+                    return(
+                        <main>
+                            <h1>Most Popular</h1>
+                            <ol>{showList}</ol>    
+                        </main>
+                    )
+                }
+            }
+        }
+        ReactDOM.render(
+            <MyLoading promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

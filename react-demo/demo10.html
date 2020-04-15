@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class HelloTime extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    opacity: 1
+                }
+            }
+            componentDidMount() {
+                var timer = setInterval(() => {
+                    var opacity = this.state.opacity
+                    opacity -= 0.05
+                    if (opacity < 0.1) {
+                        opacity = 1
+                    }
+                    this.setState({
+                        opacity: opacity
+                    })
+                }, 100)
+            }
+            render() {
+                return (
+                    <h1 style={{opacity: this.state.opacity}}>
+                        Hello {this.props.name}    
+                    </h1>
+                )
+            }
+        }
+        ReactDOM.render(
+            <HelloTime name="Tom" />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>
