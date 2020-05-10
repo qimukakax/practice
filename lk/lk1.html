@@ -1,0 +1,23 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var two = (nums, target) => {
+            let list = new Map()
+            for (let i=0; i<nums.length;i++) {
+                const key = target - nums[i]
+                if (list.has(key)) {
+                    return [list.get(key), i]
+                }
+                list.set(nums[i], i)
+            }  
+        } 
+        console.log(two([1,2,3,4], 4))
+    </script>
+</body>
+</html>

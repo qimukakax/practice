@@ -1,7 +1,31 @@
-import React, { Component } from 'react'
+import React, { Component, useReducer } from 'react'
 import Table from './Table'
 import Form from './Form'
 
+const myReducer = (state, actions) => {
+    switch(actions.type) {
+        case('add'):
+        return {
+            ...state,
+            count: state.count + 1
+        }
+        default: 
+        return state
+    }
+}
+
+function Add() {
+    const [state, dispatch] = useReducer(myReducer, { count: 0 })
+  
+    return (
+      <div className="Add">
+        <button onClick={() => dispatch({ type: 'add' })}>
+         Add
+        </button>
+        <p>Count: {state.count}</p>
+      </div>
+    );
+}
 class App extends Component {
     state = {
         characters: [
@@ -29,6 +53,7 @@ class App extends Component {
             <div className="container">
                 <Table  characterData={characters} removeCharacter={this.removeCharacter} />
                 <Form handSubmit={this.handSubmit} />
+                <Add></Add>
             </div>
         )
     }

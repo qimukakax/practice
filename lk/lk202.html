@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var isHappy = n => {
+            if (n === 1) return true
+            const list = new Set()
+            while(!list.has(n)) {
+                list.add(n)
+                let sum = 0
+                while(n) {
+                    const value = n % 10;
+                    sum += value * value
+                    n = parseInt(n/10)
+                }
+                if (sum === 1) return true
+                n = sum
+            }
+            return false
+        }
+        console.log(isHappy(2))
+
+    </script>
+</body>
+</html>
