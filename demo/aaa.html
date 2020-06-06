@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+<style>
+.s1{
+  background: #000000;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 100px;
+}
+.b1{
+  background: #ffffff;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border-radius: 100px;
+  clip: rect(0px,200px,100px,0);
+}
+.b11{
+  background: #ffffff;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border-radius: 100px;
+  clip: rect(0px,200px,100px,0);
+}
+.t1{
+  transform: rotate(30deg);
+}
+.t11{
+  transform: rotate(30deg);
+}
+</style>
 <body>
-  <input type="button" value="点击" onclick="popup()">
-  <script type="text/javascript">
-    function popup(){
-      x=window.open("http://localhost:8080/demo/bbb.html","aha","scrollbars=yes,width=400,height=200");
-      setTimeout("x.location.hash='fourth'", 2000);
-    }
-  </script>
+  <h1>扇形</h1>
+  <div class="s1">
+    <div class="b1 t1"></div>
+    <div class="b11 t11"></div>
+  </div>
 </body>
 </html>
