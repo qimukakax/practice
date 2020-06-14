@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ function ListNode(x){
+    this.val = x;
+    this.next = null;
+}
+function addTwoNumbers( l1 ,  l2 ) {
+    function ListNode(x){
+    this.val = x;
+    this.next = null;
+}
+        var node = null
+        var carry = arguments[2]
+        if (l1 || l2) {
+            var val1 = l1 ? l1.val : 0
+            var val2 = l2 ? l2.val : 0
+            var next1 = l1 ? l1.next : null
+            var next2 = l2 ? l2.next : null
+            var val = carry ? val1 + val2 + 1 : val1 + val2
+            node = new ListNode(val % 10)
+            node.next = addTwoNumbers(next1, next2, val>=10)
+        } else if (carry) {
+            node = new ListNode(1)
+            node.next = null
+        }
+        console.log(node)
+        return node
+        };
+    </script>
+</body>
+</html>
