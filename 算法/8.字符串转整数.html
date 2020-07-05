@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var myAtoi = function(str) {
+            let list1 = str.split('')
+            let num = 0
+            list1 = nono(list1)
+            list1 = list1.join('')
+            if (list1[0] !== '-' && typeof(Number(list1[0])) !== 'number') return 0
+            num = parseInt(list1)
+            if (isNaN(num)) return 0
+            if (num <= -Math.pow(2,31)){
+                return -Math.pow(2,31)
+            } else if (num>= Math.pow(2,31)) {
+                return Math.pow(2,31) -1
+            }
+            return num
+        };
+        var nono = function(str) {
+            let nokong = []
+            for (let i = 0 ; i<=str.length ; i++) {
+                if (str[i] !== ' ') {
+                    nokong =  str.slice(i)
+                    return nokong
+                }
+            }
+        }
+        console.log(myAtoi("987"))
+    </script>
+</body>
+</html>

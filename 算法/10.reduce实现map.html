@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.newmap = function(fn, _this) {
+            let reArr = []
+            thisVal = null || _this
+            this.reduce(function(pro,aft,idx,arr) {
+                return reArr.push(fn.call(_this,aft,idx,arr))
+            },[])
+            return reArr
+        }
+        let arr1 = [1,2,3]
+        arr1.newmap(res => {
+            console.log(res)
+        })
+    </script>
+</body>
+</html>

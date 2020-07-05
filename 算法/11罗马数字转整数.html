@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var romanToInt = function(s) {
+            let a = { I: 1, V: 5, x:10, L:50, C:100, D:500, M:1000 }
+            let num = 0
+            for (let i = 0 ; i<s.length; i++) {
+                if (a[s[i]]<a[s[i+1]]) {
+                    num +=a[s[i]]
+                } else {
+                    num -=a[s[i]]
+                }
+            }
+            return num
+        };
+    </script>
+</body>
+</html>
