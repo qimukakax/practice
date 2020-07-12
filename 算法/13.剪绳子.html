@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function cutRope(number)
+        {
+            // write code here
+            if(number === 2) return 1
+            if (number === 3) return 2
+            let x = number%3
+            let y = Math.floor(number/3)
+            let max = 0
+            if (x===2) {
+                max += 2*Math.pow(3,y)
+            } else if (x === 1) {
+                max += 2*2*Math.pow(3,y-1)
+            } else {
+                max += Math.pow(3,y)
+            }
+            return max
+        }
+console.log(cutRope(15))
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function maxInWindows(num, size) {
+            if (size === 0) return []
+            // write code here
+            let arr = []
+            arr = AddSize(num,size,arr)
+            return arr
+        }
+        function AddSize(num, size, arr) {
+            let max = 0
+            let sort = []
+            if (num.length >= size) {
+                for (let i=0; i<size ; i++) {
+                    sort.push(num[i])
+                }
+                max = Math.max(...sort)
+                arr.push(max)
+                num.shift()
+                AddSize(num, size, arr)
+            }
+            return arr
+        }
+        console.log(maxInWindows([2,3,4,2,6,2,5,1],3))
+    </script>
+</body>
+</html>

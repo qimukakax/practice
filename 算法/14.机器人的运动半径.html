@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            function movingCount(threshold, rows, cols)
+                {
+                    if (threshold<0 || rows<0 || cols<0) {
+                        return 0
+                    }
+                    let isVisit = []
+                    for (let i = 0;i<rows;i++) {
+                        isVisit.push([])
+                        for (let j = 0; j<cols;j++){
+                            isVisit[i][j] = false
+                        }
+                    }
+                    let sum = getMove(threshold,rows,cols,0,0,isVisit);
+                    return sum
+                }
+            function getMove(threshold,rows,cols,row,col,isVisit) {
+                let count = 0
+                if (check(threshold,rows,cols,row,col,isVisit)) {
+                    isVisit[row][col]=true
+                    count = 1 + getMove(threshold,rows,cols,row,col+1,isVisit) + getMove(threshold,rows,cols,row,col-1,isVisit) + getMove(threshold,rows,cols,row+1,col,isVisit) + getMove(threshold,rows,cols,row-1,col,isVisit)
+                }
+                return count
+            }
+            function check(threshold,rows,cols,row,col,isVisit) {
+                if (row>=0 && row<rows && col>=0 && col<cols && !isVisit[row][col] && threshold >= Add(row,col)) {
+                    return true
+                }
+                return false
+            }
+            function Add(row,col) {
+                let sum = 0
+                let str = row + '' + col
+                for (let i = 0; i<str.length;i++) {
+                    sum += str.charAt(i)*1
+                }
+                return sum
+            }
+        console.log(movingCount(5, 10, 10))
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function hasPath(matrix, rows, cols, path){
+            var arr_ = []
+            let stack = [...matrix]
+            for(let i=0;i<rows;i++){
+                arr_[i] = new Array()
+                for(let j=0;j<cols;j++){
+                    arr_[i][j] = stack.shift();
+                }
+            }
+
+            {
+                if (arr_ === [] || rows<=0 || cols<=0) {
+                    return false
+                }
+                let isVisit = []
+                let pathLength = 0
+                    for (let i = 0;i<rows;i++) {
+                        isVisit.push([])
+                        for (let j = 0; j<cols;j++){
+                            isVisit[i][j] = false
+                        }
+                    }
+                for(let i = 0;i<rows;i++) {
+                    for (let j=0; j<cols;j++) {
+                        if (getPath(arr_,rows,cols,path,pathLength,i,j,isVisit))
+                        return true
+                    }
+                } 
+                return false
+            }
+        function getPath(arr_,rows,cols,path,pathLength,row,col,isVisit) {
+            if (path[pathLength] === undefined) return true
+            let validate = false
+            if (row>=0 && row<rows && col>=0 && col<cols && !isVisit[row][col] && path[pathLength] === arr_[row][col]) {
+                isVisit[row][col] = true   
+                ++pathLength
+                validate = getPath(arr_,rows,cols,path,pathLength,row,col+1,isVisit) || 
+                getPath(arr_,rows,cols,path,pathLength,row,col-1,isVisit) || 
+                getPath(arr_,rows,cols,path,pathLength,row+1,col,isVisit) || 
+                getPath(arr_,rows,cols,path,pathLength,row-1,col,isVisit)
+                if (!validate) {
+                    --pathLength
+                    isVisit[row][col] = false
+                }
+            }
+            return validate
+        }
+        }
+console.log(hasPath('ABCESFCSADEE', 3,4, 'ABCCED'))
+false
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = []
+        function Insert(num) {
+                // write code here
+        arr.push(num)
+        arr = arr.sort((a,b) =>  a-b)
+        return arr
+        }
+        function GetMedian(){
+            // write code here
+            let count = 0
+            if (arr.length%2 === 0) {
+                count += (arr[Math.floor(arr.length/2)] + arr[Math.floor(arr.length/2) - 1])/2
+            } else {
+                count += arr[Math.floor(arr.length/2)]
+            }
+            return count
+        }
+        console.log(Insert([1,2,3,4,5]))
+    </script>
+</body>
+</html>
