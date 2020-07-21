@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var restoreIpAddresses = function(s) {
+            let arr = []
+            if (s.length < 4 || s.length > 12) return arr
+            fn(s, [], arr)
+            return arr
+        };
+        function fn(rest, temp, arr) {
+            if (temp.length === 3) {
+                pk(rest) && arr.push([...temp, rest].join('.'))
+                return
+            }
+            for ( let i = 1; i < 4 ; i++) {
+                pk(rest.substr(0,i)) && fn(rest.substr(i), [...temp,rest.substr(0,i)], arr)
+            }
+        }
+        function pk(s) {
+            if (!s.length) return false
+            return 0 <= +s && +s <= 255 && (s.length>1 ? !!+s[0] : true)
+        }
+        console.log(restoreIpAddresses('25525511135'))
+    </script>
+</body>
+</html>

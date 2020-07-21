@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function deleteDuplication(pHead) {
+        // write code here
+        if (pHead === null || pHead.next === null) {
+          return pHead;
+        }
+        if (pHead.val === pHead.next.val) {
+          let node = pHead.next;
+          while (node !== null && node.val === pHead.val) {
+            node = node.next;
+          }
+          return deleteDuplication(node);
+        } else {
+          pHead.next = deleteDuplication(pHead.next);
+          return pHead;
+        }
+      }
+    </script>
+  </body>
+</html>

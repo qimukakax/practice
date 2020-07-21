@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var levelOrder = function (root) {
+        const res = [];
+        function traversal(root, depth) {
+          if (root !== null) {
+            if (!res[depth]) {
+              res[depth] = [];
+            }
+            traversal(root.left, depth + 1);
+            res[depth].push(root.val);
+            traversal(root.right, depth + 1);
+          }
+        }
+        traversal(root, 0);
+        return res;
+      };
+    </script>
+  </body>
+</html>

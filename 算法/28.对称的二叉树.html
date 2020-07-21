@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function isSymmetrical(pRoot) {
+        // write code here
+        if (pRoot === null) return true;
+        return travel(pRoot.left, pRoot.right);
+      }
+      function travel(left, right) {
+        if (left === null) {
+          return right === null;
+        }
+        if (right === null) {
+          return false;
+        }
+        if (left.val !== right.val) {
+          return false;
+        }
+        return travel(left.left, right.right) && travel(left.right, right.left);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Print(pRoot) {
+        // write code here
+        const res = [];
+        function travel(pRoot, step) {
+          if (pRoot !== null) {
+            if (!res[step]) {
+              res[step] = [];
+            }
+            travel(pRoot.left, step + 1);
+            res[step].push(pRoot.val);
+            travel(pRoot.right, step + 1);
+          }
+        }
+        travel(pRoot, 0);
+        return res.reverse();
+      }
+    </script>
+  </body>
+</html>

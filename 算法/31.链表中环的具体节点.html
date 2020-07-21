@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function EntryNodeOfLoop(pHead) {
+        // write code here
+        if (!pHead || !pHead.next.next || !pHead.next) {
+          return null;
+        }
+        let fast = pHead.next.next;
+        let slow = pHead.next;
+        while (fast && slow) {
+          if (fast !== slow) {
+            fast = fast.next.next;
+            slow = slow.next;
+          } else {
+            break;
+          }
+        }
+        if (!fast || !slow) {
+          return null;
+        }
+        fast = pHead;
+        while (fast !== slow) {
+          fast = fast.next;
+          slow = slow.next;
+        }
+        return fast;
+      }
+    </script>
+  </body>
+</html>
