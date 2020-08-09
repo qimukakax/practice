@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function deepArr(arr, len) {
+        let flag = false;
+        let arr1 = [];
+        for (let i = 0; i < arr.length; i++) {
+          let isArray =
+            Object.prototype.toString.call(arr[i]) === "[object Array]";
+          if (isArray) {
+            for (let j = 0; j < arr[i].length; j++) {
+              arr1.push(arr[i][j]);
+            }
+            flag = true;
+          }
+        }
+        if (flag) {
+          len++;
+          return deepArr(arr1, len);
+        } else {
+          return len;
+        }
+      }
+      var ary = [9, "kk", ["kk", 9], ["uuu", "hhh", ["kkk", 89]]];
+      let lens = deepArr(ary, 1);
+      console.log(lens);
+    </script>
+  </body>
+</html>

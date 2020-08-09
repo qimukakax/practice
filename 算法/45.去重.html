@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function uniqueify(arr, cb) {
+        let newArr = [];
+        if (!cb) {
+          newArr = [...new Set(arr)];
+        } else {
+          let obj = {};
+          arr.forEach((item) => {
+            if (!obj[cb(item)]) {
+              obj[cb(item)] = item;
+              newArr.push(item);
+            }
+          });
+        }
+        console.log(newArr);
+      }
+      let arr2 = [
+        { name: "xx", sex: "male" },
+        { name: "xx", sex: "female" },
+        { name: "xx", sex: "male" },
+        { name: "aa", sex: "male" },
+        { name: "aa", sex: "male" },
+      ];
+      uniqueify(arr2, (a) => a.name + a.sex);
+    </script>
+  </body>
+</html>

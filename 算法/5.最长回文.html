@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        var longestPalindrome = function(s) {
-            if (s === null || s.length === 0) {
-                return ''
-            }
-            if (s.length === 1) {
-                return s
-            }
-            let bIndex = 0 
-            let len = 1
-            for (let i = 0 ; i<s.length ; i++) {
-                for (let j = i+1 ; j<s.length ; j++) {
-                    if (j-i+1>len && isArray(s,i,j)) {
-                        bIndex = i
-                        len = j-i+1
-                    }
-                }
-            }
-            return s.substring(bIndex,bIndex+len)
-        };
-        var isArray = function(s,i,j) {
-            while (i<j) {
-                if (s.charAt(i) !== s.charAt(j)) {
-                    return false
-                }
-                i++
-                j--
-            }
-            return true
+      var longestPalindrome = function (s) {
+        if (s === null || s.length === 0) {
+          return "";
         }
-        console.log(longestPalindrome('ababba'))
+        if (s.length === 1) {
+          return s;
+        }
+        let bIndex = 0;
+        let len = 1;
+        for (let i = 0; i < s.length; i++) {
+          for (let j = i + 1; j < s.length; j++) {
+            if (j - i + 1 > len && isArray(s, i, j)) {
+              bIndex = i;
+              len = j - i + 1;
+            }
+          }
+        }
+        return s.substring(bIndex, bIndex + len);
+      };
+      var isArray = function (s, i, j) {
+        while (i < j) {
+          if (s.charAt(i) !== s.charAt(j)) {
+            return false;
+          }
+          i++;
+          j--;
+        }
+        return true;
+      };
+      console.log(longestPalindrome("ababba"));
     </script>
-</body>
+  </body>
 </html>

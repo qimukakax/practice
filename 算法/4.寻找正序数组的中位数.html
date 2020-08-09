@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-    var findMedianSortedArrays = function(nums1, nums2) {
-        var num = [...nums1,...nums2]
-        num = num.sort((a,b) =>{return a-b})
-        var mid = 0
-        if (num.length%2 === 0) {
-            mid = (num[num.length/2-1]+num[num.length/2])/2
+      var findMedianSortedArrays = function (nums1, nums2) {
+        var num = [...nums1, ...nums2];
+        num = num.sort((a, b) => {
+          return a - b;
+        });
+        var mid = 0;
+        if (num.length % 2 === 0) {
+          mid = (num[num.length / 2 - 1] + num[num.length / 2]) / 2;
         } else {
-            mid = num[Math.floor(num.length/2)]
+          mid = num[Math.floor(num.length / 2)];
         }
-        return mid 
-    };
-    console.log(findMedianSortedArrays([1,2],[3]))
+        return mid;
+      };
+      console.log(findMedianSortedArrays([1, 2], [3]));
     </script>
-</body>
+  </body>
 </html>

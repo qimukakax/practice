@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        var majorityElement = function(nums) {
-            let obj = {}
-            let since = nums.length/2
-            let maxArr = []
-            let max = 0
-            nums.forEach(ele => {
-                if (obj[ele]) {
-                    obj[ele].push(ele)
-                } else {
-                    obj[ele] = [ele]
-                }
-                if (obj[ele].length > max) {
-                    max = obj[ele].length
-                    maxArr = obj[ele]
-                }
-            });
-            return maxArr[0]
-        };
-        console.log(majorityElement([3, 3, 4]))
+      var majorityElement = function (nums) {
+        let obj = {};
+        let since = nums.length / 2;
+        let maxArr = [];
+        let max = 0;
+        nums.forEach((ele) => {
+          if (obj[ele]) {
+            obj[ele].push(ele);
+          } else {
+            obj[ele] = [ele];
+          }
+          if (obj[ele].length > max) {
+            max = obj[ele].length;
+            maxArr = obj[ele];
+          }
+        });
+        return maxArr[0];
+      };
+      console.log(majorityElement([3, 3, 4]));
     </script>
-</body>
+  </body>
 </html>

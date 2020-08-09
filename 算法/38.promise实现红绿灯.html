@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function red() {
+        console.log("red");
+      }
+      function green() {
+        console.log("green");
+      }
+      function yellow() {
+        console.log("yellow");
+      }
+      function light(fn, time) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            fn(), resolve();
+          }, time);
+        });
+      }
+      function step() {
+        Promise.resolve()
+          .then(() => {
+            return light(red, 3000);
+          })
+          .then(() => {
+            return light(green, 2000);
+          })
+          .then(() => {
+            return light(yellow, 1000);
+          })
+          .then(() => {
+            return step();
+          });
+      }
+      step();
+    </script>
+  </body>
+</html>

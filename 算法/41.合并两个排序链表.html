@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 递归的方式合并两个排序链表
+      //   function sumList(pHead1, pHead2) {
+      //     let res = null;
+      //     if (pHead1 === null) return pHead2;
+      //     if (pHead2 === null) return pHead1;
+      //     console.log(pHead2.next);
+      //     if (pHead1.val < pHead2.val) {
+      //       res = pHead1;
+      //       res.next = sumList(pHead1.next, pHead2);
+      //     } else {
+      //       res = pHead2;
+      //       res.next = sumList(pHead1, pHead2.next);
+      //     }
+      //     return res;
+      //   }
+      function Node(node) {
+        this.val = node;
+        this.next = null;
+      }
+      //   var node = new Node(1);
+      //   var node1 = new Node(2);
+      //   node.next = 3;
+      //   node.next.next = 4;
+      //   node1.next = 5;
+      //   console.log(sumList(node, node1));
+      function addList(p1, p2) {
+        if (!p1) return p2;
+        if (!p2) return p1;
+        let node = new Node(0);
+        let now = node;
+        while (p1 && p2) {
+          if (p1.val < p2.val) {
+            node.next = p1;
+            node = node.next;
+            p2 = p2.next;
+          } else {
+            node.next = p2;
+            node = node.next;
+            p1 = p1.next;
+          }
+        }
+        if (p1) {
+          node.next = p1;
+        } else {
+          node.next = p2;
+        }
+        return now.next;
+      }
+    </script>
+  </body>
+</html>

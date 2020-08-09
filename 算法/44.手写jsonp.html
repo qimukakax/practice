@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const jsonp = (res = {}) => {
+        res.url = `${res.url}?callback=${res.callBack}`;
+        for (let key in res.data) {
+          if (res.data[key]) {
+            res.url += `&${key}=${res.data[key]}`;
+          }
+        }
+        const script = document.createElement("script");
+        script.src = res.url;
+        document.body.appendChild(script);
+      };
+      res = {
+        url: "11",
+        data: {
+          name: "a",
+          age: 1,
+        },
+        callBack: "getData",
+      };
+    </script>
+  </body>
+</html>

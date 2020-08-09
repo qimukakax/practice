@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        function KthNode(pRoot, k){
-            if(!pRoot || !k){
-                return null;
-            }
-            return getK(pRoot)
-            function getK(root) {
-                let target = null
-                if(root.left) {
-                    target = getK(root.left)
-                }
-                if (!target) {
-                    if (k===1) {
-                        target = root
-                    }
-                    k--
-                }
-                if (!target && root.right) {
-                    target = getK(root.right)
-                }
-                return target
-            }
+      function KthNode(pRoot, k) {
+        if (!pRoot || !k) {
+          return null;
         }
+        return getK(pRoot);
+        function getK(root) {
+          let target = null;
+          if (root.left) {
+            target = getK(root.left);
+          }
+          if (!target) {
+            if (k === 1) {
+              target = root;
+            }
+            k--;
+          }
+          if (!target && root.right) {
+            target = getK(root.right);
+          }
+          return target;
+        }
+      }
     </script>
-</body>
+  </body>
 </html>

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        var reverse = function(x) {
-            let reverse = Math.abs(x).toString().split('').reverse().join('')*1
-            if (x<0){
-                return reverse <= Math.pow(2,31) ? -reverse : 0
-            } else {
-                return reverse <=Math.pow(2,31) ? reverse : 0
-            }
-        };
-        console.log(reverse(121300))
+      var reverse = function (x) {
+        let reverse = Math.abs(x).toString().split("").reverse().join("") * 1;
+        if (x < 0) {
+          return reverse <= Math.pow(2, 31) ? -reverse : 0;
+        } else {
+          return reverse <= Math.pow(2, 31) ? reverse : 0;
+        }
+      };
+      console.log(reverse(121300));
     </script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var replace = function (s, old, newString) {
+        /*
+          s old newString 都是 string
+          返回一个「将 s 中出现的唯一 old 字符串替换为 new 字符串」的字符串
+          */
+        let idx = s.indexOf(old);
+        let front = s.slice(0, idx);
+        let end = s.slice(idx - 1, 1);
+        return front + newString + end;
+      };
+      var replaceAll = function (s, old, newString) {
+        /*
+            s old newString 都是 string
+            返回一个「将 s 中出现的所有 old 字符串替换为 new 字符串」的字符串
+        */
+        let arr = [];
+        arr = s.split(old).map((res) => [res]);
+        return arr.join(newString);
+        console.log(arr);
+      };
+      console.log(replace("ara", "r", "a"));
+      console.log(replaceAll("ara", "a", "r"));
+    </script>
+  </body>
+</html>

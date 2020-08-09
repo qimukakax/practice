@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        let arr = []
-        function Serialize(pRoot) {
-            if (!pRoot) {
-                arr.push('#')
-            } else {
-                arr.push(pRoot.val)
-                Serialize(pRoot.left)
-                Serialize(pRoot.right)
-
-            }
-            return arr.join(',')
-            // write code here
+      let arr = [];
+      function Serialize(pRoot) {
+        if (!pRoot) {
+          arr.push("#");
+        } else {
+          arr.push(pRoot.val);
+          Serialize(pRoot.left);
+          Serialize(pRoot.right);
         }
-        function Deserialize() {
-  // write code here
-  let node = null;
-  if (arr.length < 1) {
-    return null;
-  }
-  const number = arr.shift();
-  if (typeof number === 'number') {
-    node = new TreeNode(number);
-    node.left = Deserialize();
-    node.right = Deserialize();
-  }
-  return node;
-}
+        return arr.join(",");
+        // write code here
+      }
+      function Deserialize() {
+        // write code here
+        let node = null;
+        if (arr.length < 1) {
+          return null;
+        }
+        const number = arr.shift();
+        if (typeof number === "number") {
+          node = new TreeNode(number);
+          node.left = Deserialize();
+          node.right = Deserialize();
+        }
+        return node;
+      }
     </script>
-</body>
+  </body>
 </html>

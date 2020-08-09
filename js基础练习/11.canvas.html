@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* .box {
+      width: 500px;
+      height: 500px;
+      border: 1px solid #f000f0;
+      display: grid;
+    }
+    .inner {
+      width: 50px;
+      height: 50px;
+      background-color: brown;
+      align-self: center;
+      justify-self: center;
+    } */
+    /* .box {
+      width: 500px;
+      height: 500px;
+      border: 1px solid #f000f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .inner {
+      width: 50px;
+      height: 50px;
+      background-color: brown;
+    } */
+  </style>
+  <body>
+    <!-- <div class="box">
+      <div class="inner"></div>
+    </div> -->
+    <script>
+      var invertTree = function (root) {
+        //判断当前树是否为 null
+        if (root == null) return root;
+        //左右子树结点交换
+        let right = root.right;
+        let left = root.left;
+        root.right = left;
+        root.left = right;
+        //分别对左右子树进行递归
+        invertTree(left);
+        invertTree(right);
+        //返回树的根节点
+        return root;
+      };
+    </script>
+  </body>
+</html>

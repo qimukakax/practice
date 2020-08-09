@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Animals() {
+        this.name = "animals";
+      }
+      function Dog() {
+        this.age = 12;
+      }
+      Dog.prototype = new Animals();
+      var laji = new Dog();
+      console.log(laji.name);
+    </script>
+  </body>
+</html>

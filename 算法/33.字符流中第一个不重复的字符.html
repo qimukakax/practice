@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let map;
+      function Init() {
+        // write code here
+        map = new Map();
+      }
+      //Insert one char from stringstream
+      function Insert(ch) {
+        // write code here
+        let count = map.get(ch);
+        if (!count) {
+          map.set(ch, 1);
+        } else {
+          map.set(ch, count + 1);
+        }
+      }
+      //return the first appearence once char in current stringstream
+      function FirstAppearingOnce() {
+        // write code here
+        for (let i of map.keys()) {
+          if (map.get(i) === 1) {
+            return i;
+          }
+        }
+        return "#";
+      }
+    </script>
+  </body>
+</html>
