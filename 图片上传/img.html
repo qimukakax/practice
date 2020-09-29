@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="./index.css">
+
+<body>
+  <div class="image-content">
+    <ul id="img-list"></ul>
+    <div class="upload-btn">
+      <p class="upload-label">+上传图片，支持jpg/png</p>
+      <input type="file" name="file" accept="image/*" id="upload">
+      <p class=" label">最多上传四张图片哦！最大只能上传1M的哦！</p>
+    </div>
+  </div>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+    var btn = document.getElementsByTagName('p')[0]
+    var file = document.querySelector('#upload')
+    var imgName = []
+    var imgSrc = []
+    var imgFile = []
+    btn.addEventListener('click', () => {
+      file.click()
+    })
+    file.onchange = function (e) {
+      const files = e.target.files
+      for (let i = 0; i < files.length; i++) {
+        let src = getObjectURL(files[i])
+        imgName.push(files[i].name)
+        imgSrc.push(src)
+        imgFile.push(files[i])
+      }
+      if (imgSrc.length == 4) {
+        return alert("最多只能上传4张图片");
+      }
+      let imgSize = this.files[0].size;
+      if (imgSize > 1024 * 1024 * 1) {//1M
+        return alert("上传图片不能超过1M");
+      }
+      if (this.files[0].type != 'image/png' && this.files[0].type != 'image/jpeg') {
+        return alert("图片上传格式不正确");
+      }
+      addChild('#img-list')
+    }
+    // 图片在线预览转化本地的URl
+    function getObjectURL(file) {
+      var url = null;
+      // 区分不同浏览器 不懂百度
+      if (window.createObjectURL != undefined) { // basic
+        url = window.createObjectURL(file);
+      } else if (window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+      } else if (window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+      }
+      return url;
+    }
+    function addChild(dom) {
+      $(dom).html('')
+      for (let i = 0; i < imgSrc.length; i++) {
+        let oldDom = $(dom).html()
+        $(dom).html(oldDom + '<li class="img-item"><img src="' + imgSrc[i] + '" alt="" class="img-box"><span index=' + i + ' class="del">删除</span></li>')
+      }
+    }
+    $('#img-list').on('mouseover', () => {
+      $('.del').removeClass('hide')
+    })
+    $('#img-list').on('mouseleave', () => {
+      $('.del').addClass('hide')
+    })
+    $('#img-list').on('click', () => {
+      let idx = $('span').attr('index')
+      console.log(idx);
+      imgSrc.splice(idx, 1)
+      imgFile.splice(idx, 1)
+      imgName.splice(idx, 1)
+      addChild('#img-list')
+      if (imgSrc.length < 4) {
+        $('upload-btn').show()
+      }
+    })
+  </script>
+</body>
+
+</html>

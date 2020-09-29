@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <button id="qq">防抖</button>
-    <script>
-      var qq = document.getElementById("qq");
-      //   function debounce(fn) {
-      //     let timeout = null;
-      //     return function () {
-      //       if (timeout !== null) {
-      //         clearTimeout(timeout);
-      //       }
-      //       timeout = setTimeout(() => {
-      //         fn.call(this);
-      //       }, 1000);
-      //     };
-      //   }
-      // function jieliu(fn) {
-      //   let time = true;
-      //   return function () {
-      //     if (!time) {
-      //       return;
-      //     }
-      //     time = false;
-      //     setTimeout(() => {
-      //       fn.call(this);
-      //       time = true;
-      //     }, 1000);
-      //   };
-      // }
-      function jieliu(fn, time) {
-        let start = 0;
-        return function () {
-          let nowTime = Date.now();
-          if (nowTime - start > time) {
-            fn.call(this);
-            start = nowTime;
-          }
-        };
-      }
-      function handle() {
-        console.log(111);
-      }
-      // qq.addEventListener("click", debounce(handle));
-      qq.addEventListener("click", jieliu(handle, 1000));
-    </script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="qq">防抖</button>
+  <script>
+    var qq = document.getElementById("qq");
+    //   function debounce(fn) {
+    //     let timeout = null;
+    //     return function () {
+    //       if (timeout !== null) {
+    //         clearTimeout(timeout);
+    //       }
+    //       timeout = setTimeout(() => {
+    //         fn.call(this);
+    //       }, 1000);
+    //     };
+    //   }
+    // function jieliu(fn) {
+    //   let time = true;
+    //   return function () {
+    //     if (!time) {
+    //       return;
+    //     }
+    //     time = false;
+    //     setTimeout(() => {
+    //       fn.call(this);
+    //       time = true;
+    //     }, 1000);
+    //   };
+    // }
+    // function jieliu(fn, time) {
+    //   let start = 0;
+    //   return function () {
+    //     let nowTime = Date.now();
+    //     if (nowTime - start > time) {
+    //       fn.call(this);
+    //       start = nowTime;
+    //     }
+    //   };
+    // }
+    // function fangdou(fn, delay) {
+    //   let timer = null
+    //   return function () {
+    //     clearTimeout(timer)
+    //     timer = setTimeout(() => {
+    //       fn.call(this)
+    //     }, delay)
+    //   }
+    // }
+    function handle() {
+      console.log(111);
+    }
+    // qq.addEventListener("click", debounce(handle));
+    qq.addEventListener("click", fangdou(handle, 1000));
+  </script>
+</body>
+
 </html>
